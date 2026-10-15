@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sweet Flavour Magazzino — Website Feature Proposal</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background:#0E0D0B;
+    color:#F5F0E6;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  .serif { font-family: Georgia, "Times New Roman", "Playfair Display", serif; }
+  .gold { color:#D8B45A; }
+  .wrap { max-width:1000px; margin:0 auto; padding:0 22px; }
+
+  /* ---------- HEADER ---------- */
+  header {
+    text-align:center;
+    padding:70px 22px 60px;
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(216,180,90,.18), transparent 62%),
+      linear-gradient(#141210,#0E0D0B);
+    border-bottom:1px solid rgba(216,180,90,.25);
+  }
+  .monogram {
+    width:86px; height:86px; margin:0 auto 22px;
+    border:1.5px solid #D8B45A; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-family:Georgia,serif; font-size:26px; letter-spacing:1px; color:#D8B45A;
+    background:linear-gradient(145deg, rgba(216,180,90,.12), transparent);
+  }
+  .kicker { font-size:11px; letter-spacing:.42em; text-transform:uppercase; color:#D8B45A; margin-bottom:16px; }
+  h1 { font-family:Georgia,serif; font-size:clamp(30px,6vw,52px); font-weight:400; letter-spacing:.5px; line-height:1.15; }
+  h1 em { font-style:italic; color:#D8B45A; }
+  .sub { max-width:620px; margin:20px auto 0; color:#B9B2A4; font-size:15.5px; }
+  .rule { width:60px; height:1px; background:#D8B45A; margin:26px auto 0; }
+
+  /* ---------- SECTIONS ---------- */
+  section { padding:64px 0; border-bottom:1px solid rgba(255,255,255,.06); }
+  .sec-num { font-size:11px; letter-spacing:.4em; color:#8C8577; text-transform:uppercase; margin-bottom:10px; }
+  h2 { font-family:Georgia,serif; font-size:clamp(22px,4vw,32px); font-weight:400; margin-bottom:14px; }
+  h2 .gold { font-style:italic; }
+  .lead { color:#B9B2A4; font-size:15px; max-width:720px; margin-bottom:34px; }
+
+  /* vision cards */
+  .vision { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; }
+  .vcard {
+    border:1px solid rgba(216,180,90,.22); border-radius:14px; padding:24px 22px;
+    background:linear-gradient(160deg, rgba(216,180,90,.06), rgba(255,255,255,.015));
+  }
+  .vcard .ico { font-size:22px; margin-bottom:12px; display:block; }
+  .vcard h3 { font-family:Georgia,serif; font-weight:400; font-size:18px; margin-bottom:8px; color:#F5F0E6; }
+  .vcard p { font-size:13.5px; color:#A9A294; }
+
+  /* palette */
+  .palettes { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:16px; }
+  .pal { border:1px solid rgba(255,255,255,.1); border-radius:14px; overflow:hidden; background:rgba(255,255,255,.02); }
+  .swatches { display:flex; height:74px; }
+  .sw { flex:1; }
+  .pal-body { padding:18px 20px 20px; }
+  .pal-body .name { font-family:Georgia,serif; font-size:16px; margin-bottom:4px; }
+  .pal-body .tag { font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:#8C8577; }
+  .reco {
+    display:inline-block; margin-top:10px; font-size:10px; letter-spacing:.16em; text-transform:uppercase;
+    color:#0E0D0B; background:#D8B45A; padding:4px 10px; border-radius:20px; font-weight:700;
+  }
+
+  /* wireframe */
+  .wire { display:grid; grid-template-columns:1fr; gap:10px; max-width:640px; margin:0 auto; }
+  .block {
+    border:1px solid rgba(216,180,90,.28); border-left:3px solid #D8B45A; border-radius:8px;
+    padding:13px 16px; display:flex; gap:14px; align-items:baseline;
+    background:linear-gradient(90deg, rgba(216,180,90,.07), rgba(255,255,255,.012));
+  }
+  .block .n { font-family:Georgia,serif; color:#D8B45A; font-size:13px; min-width:20px; }
+  .block .t { font-size:14.5px; font-weight:600; }
+  .block .d { font-size:12.5px; color:#9A9385; display:block; font-weight:400; margin-top:2px; }
+  .block.hi { border-color:rgba(216,180,90,.6); background:linear-gradient(90deg, rgba(216,180,90,.16), rgba(255,255,255,.02)); }
+
+  /* feature columns */
+  .featgrid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:14px; }
+  .feat { padding:20px; border-radius:12px; background:rgba(255,255,255,.025); border:1px solid rgba(255,255,255,.08); }
+  .feat h4 { font-family:Georgia,serif; font-weight:400; font-size:16px; color:#D8B45A; margin-bottom:12px; }
+  .feat ul { list-style:none; }
+  .feat li { font-size:13.5px; color:#B9B2A4; padding:6px 0 6px 22px; position:relative; border-bottom:1px solid rgba(255,255,255,.04); }
+  .feat li:last-child { border-bottom:none; }
+  .feat li::before { content:"—"; position:absolute; left:0; color:#D8B45A; }
+  .feat li b { color:#F0EAD9; font-weight:600; }
+
+  /* flow */
+  .flow { display:flex; flex-wrap:wrap; gap:10px; align-items:center; justify-content:center; }
+  .step {
+    border:1px solid rgba(216,180,90,.35); border-radius:12px; padding:18px 18px; width:172px; text-align:center;
+    background:rgba(216,180,90,.05);
+  }
+  .step .sn { font-family:Georgia,serif; color:#D8B45A; font-size:12px; letter-spacing:.2em; margin-bottom:8px; }
+  .step .st { font-size:13px; font-weight:600; line-height:1.4; }
+  .step .sd { font-size:11.5px; color:#9A9385; margin-top:6px; }
+  .arrow { color:#D8B45A; font-size:18px; }
+
+  /* whatsapp mock */
+  .wa-outer { max-width:400px; margin:0 auto; }
+  .wa {
+    border-radius:18px; overflow:hidden; border:1px solid rgba(37,211,102,.4);
+    background:#0B141A; box-shadow:0 20px 50px rgba(0,0,0,.55);
+  }
+  .wa-top { background:#1F2C34; padding:12px 16px; display:flex; align-items:center; gap:10px; }
+  .wa-av { width:34px; height:34px; border-radius:50%; background:#D8B45A; display:flex; align-items:center; justify-content:center;
+           font-family:Georgia,serif; color:#0B141A; font-size:12px; font-weight:700; }
+  .wa-top .t { font-size:13px; font-weight:600; color:#E9EDEF; }
+  .wa-top .s { font-size:10.5px; color:#8696A0; }
+  .wa-body { padding:16px; background:
+    linear-gradient(rgba(11,20,26,.94), rgba(11,20,26,.94)),
+    repeating-linear-gradient(45deg,#0B141A 0 8px,#0e171d 8px 16px); }
+  .bubble {
+    background:#005C4B; color:#E9EDEF; border-radius:10px 10px 2px 10px; padding:12px 14px;
+    font-size:12.3px; line-height:1.6; max-width:92%; margin-left:auto; white-space:pre-line;
+    box-shadow:0 2px 6px rgba(0,0,0,.3);
+  }
+  .bubble b { color:#fff; }
+  .wa-time { text-align:right; font-size:10px; color:#8FA9A1; margin-top:8px; }
+
+  /* needs + plan */
+  .cols { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:28px; }
+  .needs li, .plan li { font-size:14px; color:#B9B2A4; padding:9px 0 9px 26px; position:relative; border-bottom:1px dashed rgba(255,255,255,.09); list-style:none; }
+  .needs li::before { content:"✦"; position:absolute; left:0; color:#D8B45A; font-size:11px; top:11px; }
+  .plan li::before { content:"→"; position:absolute; left:0; color:#D8B45A; }
+  .needs li b, .plan li b { color:#F0EAD9; }
+
+  /* footer */
+  .closing { text-align:center; padding:70px 22px 80px; background:radial-gradient(ellipse at 50% 100%, rgba(216,180,90,.14), transparent 60%); }
+  .closing h2 { margin-bottom:12px; }
+  .closing p { color:#B9B2A4; font-size:15px; max-width:560px; margin:0 auto 26px; }
+  .cta-row { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+  .btn {
+    display:inline-block; padding:14px 30px; border-radius:40px; font-size:13px; letter-spacing:.12em;
+    text-transform:uppercase; font-weight:700; text-decoration:none;
+  }
+  .btn-gold { background:linear-gradient(145deg,#E4C878,#C9A227); color:#12100C; }
+  .btn-out { border:1px solid rgba(216,180,90,.6); color:#D8B45A; }
+  .contact { margin-top:30px; font-size:13px; color:#8C8577; letter-spacing:.05em; }
+  .contact span { color:#D8B45A; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="monogram serif">SFM</div>
+  <div class="kicker">Website Feature Proposal</div>
+  <h1 class="serif">Sweet Flavour <em>Magazzino</em></h1>
+  <p class="sub">Pastries &amp; Small Chops &nbsp;•&nbsp; Celebration Cakes &nbsp;•&nbsp; Large-Volume Party Cooking &nbsp;•&nbsp; African Soup Home Delivery</p>
+  <div class="rule"></div>
+  <p class="sub" style="margin-top:22px; font-size:13.5px;">Ipaja&nbsp;•&nbsp; Ayobo&nbsp;•&nbsp; Lagos, Nigeria &nbsp;|&nbsp; WhatsApp <span class="gold">+234 802 458 9080</span> &nbsp;|&nbsp; Call <span class="gold">+234 803 576 7902</span></p>
+</header>
+
+<!-- 1. VISION -->
+<section>
+  <div class="wrap">
+    <div class="sec-num">01 — The Vision</div>
+    <h2 class="serif">A <span class="gold">million-naira</span> feel, with ordering so easy it feels like cheating.</h2>
+    <p class="lead">Deep charcoal, champagne gold and cream. Editorial serif headlines, generous white space, slow elegant animations. Every button leads somewhere useful — and every order lands in your WhatsApp, formatted and ready to confirm.</p>
+    <div class="vision">
+      <div class="vcard"><span class="ico">📱</span><h3>Mobile-first</h3><p>Most of your customers are on Android phones. I build for the phone first — the desktop version simply inherits the beauty.</p></div>
+      <div class="vcard"><span class="ico">💬</span><h3>Every order → WhatsApp</h3><p>Customers fill a form or build an order, and a clean, complete message opens in your chat. No missed orders, no confusion.</p></div>
+      <div class="vcard"><span class="ico">🍰</span><h3>Cravings → Clicks</h3><p>Big appetising photography, filterable gallery, and "Order this" buttons right on each item.</p></div>
+      <div class="vcard"><span class="ico">⚡</span><h3>Fast &amp; free to host</h3><p>One lightweight page, no monthly bills. Works on weak network. Domain can be added later.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. DESIGN DIRECTION -->
+<section>
+  <div class="wrap">
+    <div class="sec-num">02 — Design Direction</div>
+    <h2 class="serif">Three ways we could dress it. <span class="gold">My recommendation is first.</span></h2>
+    <p class="lead">Tell me which mood feels like your brand — or mix them.</p>
+    <div class="palettes">
+      <div class="pal">
+        <div class="swatches"><div class="sw" style="background:#0E0D0B"></div><div class="sw" style="background:#2A2620"></div><div class="sw" style="background:#D8B45A"></div><div class="sw" style="background:#F5F0E6"></div></div>
+        <div class="pal-body"><div class="name serif">Midnight &amp; Champagne</div><div class="tag">Black · Gold · Cream</div><span class="reco">Recommended</span></div>
+      </div>
+      <div class="pal">
+        <div class="swatches"><div class="sw" style="background:#4A1220"></div><div class="sw" style="background:#7B1F35"></div><div class="sw" style="background:#C9A227"></div><div class="sw" style="background:#F7F1E5"></div></div>
+        <div class="pal-body"><div class="name serif">Royal Wine</div><div class="tag">Burgundy · Gold · Ivory</div></div>
+      </div>
+      <div class="pal">
+        <div class="swatches"><div class="sw" style="background:#0C3B2E"></div><div class="sw" style="background:#155C46"></div><div class="sw" style="background:#D4AF6A"></div><div class="sw" style="background:#FBF7EF"></div></div>
+        <div class="pal-body"><div class="name serif">Emerald Heritage</div><div class="tag">Green · Gold · Cream</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. HOMEPAGE STRUCTURE -->
+<section>
+  <div class="wrap">
+    <div class="sec-num">03 — Homepage Structure</div>
+    <h2 class="serif">What a visitor sees, <span class="gold">top to bottom</span>.</h2>
+    <p class="lead" style="margin-bottom:30px;">Every block has a job. Gold-highlighted blocks are the money-makers.</p>
+    <div class="wire">
+      <div class="block hi"><span class="n">01</span><span><span class="t">Hero</span><span class="d">Full-screen food image · name · tagline · two gold buttons: “Order on WhatsApp” + “Call Now” · small trust line: “Fresh daily · Ipaja–Ayobo · On-time delivery”</span></span></div>
+      <div class="block"><span class="n">02</span><span><span class="t">Trust strip</span><span class="d">✓ Hygiene-first kitchen ✓ 100% Fresh ✓ Cakes of every kind ✓ Party cooking for 20–500 guests</span></span></div>
+      <div class="block hi"><span class="n">03</span><span><span class="t">Our Services — 4 elegant cards</span><span class="d">Pastries &amp; Small Chops · Celebration Cakes · Large-Volume Party Cooking · African Soup Home Delivery. Each card has “Enquire on WhatsApp”.</span></span></div>
+      <div class="block"><span class="n">04</span><span><span class="t">Signature Menu / Gallery</span><span class="d">Filter tabs: Cakes · Pastries · Small Chops · Soups · Party Trays. Each item: photo, name, short description, “Order this” button.</span></span></div>
+      <div class="block"><span class="n">05</span><span><span class="t">Occasion Packages</span><span class="d">3 tiers (e.g. Classic / Signature / Royal) — weddings, birthdays, naming, corporate. “Starting from ₦—” (you supply figures) with “Book this package”.</span></span></div>
+      <div class="block hi"><span class="n">06</span><span><span class="t">Booking &amp; Order Form</span><span class="d">Name · phone · service · occasion · date · number of guests · area (Ipaja/Ayobo/other) · budget · notes → one tap opens WhatsApp with everything pre-written.</span></span></div>
+      <div class="block"><span class="n">07</span><span><span class="t">How It Works</span><span class="d">01 Browse → 02 Choose &amp; send on WhatsApp → 03 We confirm &amp; cook → 04 Delivered fresh to your door.</span></span></div>
+      <div class="block"><span class="n">08</span><span><span class="t">Testimonials</span><span class="d">3–4 short reviews with first names and occasion. Swap in real ones as they come.</span></span></div>
+      <div class="block"><span class="n">09</span><span><span class="t">Delivery Areas</span><span class="d">Map-styled card: Ipaja, Ayobo, Alagbado, Egbeda, Ikeja, Agege, Iyana Ipaja + “We deliver across Lagos”. Lagos-wide notice for soups &amp; cakes.</span></span></div>
+      <div class="block"><span class="n">10</span><span><span class="t">FAQ</span><span class="d">“How far ahead should I book a cake?” · “Do you cook at the venue?” · “How is soup delivered?” · “How do I pay?” (accordion)</span></span></div>
+      <div class="block"><span class="n">11</span><span><span class="t">Footer</span><span class="d">Logo · phone · WhatsApp · address (Ipaja–Ayobo, Lagos) · opening hours · Instagram/Facebook/TikTok · mini contact form</span></span></div>
+      <div class="block hi"><span class="n">12</span><span><span class="t">Floating WhatsApp button</span><span class="d">Always visible at the bottom corner, gently pulsing. One tap = chat with you.</span></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. FEATURES -->
+<section>
+  <div class="wrap">
+    <div class="sec-num">04 — Full Feature List</div>
+    <h2 class="serif">Everything that makes it feel <span class="gold">premium and effortless</span>.</h2>
+    <p class="lead">Grouped so you can tick or cross anything.</p>
+    <div class="featgrid">
+      <div class="feat"><h4>Ordering &amp; WhatsApp</h4><ul>
+        <li><b>Order basket</b> — customers tap “Order this” on items; a small basket builds up, then sends ONE tidy WhatsApp message</li>
+        <li><b>Booking form</b> — full event details sent to your WhatsApp</li>
+        <li><b>One-tap Call button</b> — +234 803 576 7902</li>
+        <li><b>Fallback copy</b> — if WhatsApp won't open, the order text is shown to copy &amp; send manually</li>
+        <li><b>Delivery area field</b> — so you know distance upfront</li>
+        <li><b>Optional guest-count price estimator</b> — instant “from ₦—” guide before they chat</li>
+      </ul></div>
+
+      <div class="feat"><h4>Look &amp; Feel</h4><ul>
+        <li><b>Luxury typography</b> — editorial serif + clean sans pairing</li>
+        <li><b>Subtle motion</b> — images fade and rise as you scroll; nothing cheap or bouncy</li>
+        <li><b>Photography-forward</b> — big, appetising, warm-toned food shots</li>
+        <li><b>Custom SFM monogram</b> — I can design a simple elegant logo mark for you</li>
+        <li><b>Consistent gold accent system</b> — buttons, lines, icons</li>
+        <li><b>Mobile-first</b> — flawless on small screens</li>
+      </ul></div>
+
+      <div class="feat"><h4>Trust &amp; Selling</h4><ul>
+        <li><b>Service cards</b> with clear “from ₦—” pricing or “Request quote”</li>
+        <li><b>Occasion packages</b> for weddings, birthdays, naming, corporate</li>
+        <li><b>Testimonials</b> section</li>
+        <li><b>FAQ</b> to answer before they ask</li>
+        <li><b>Delivery coverage</b> list — Ipaja, Ayobo &amp; Lagos-wide</li>
+        <li><b>Opening hours</b> + “Response within 30 mins” promise</li>
+      </ul></div>
+
+      <div class="feat"><h4>Technical &amp; Growth</h4><ul>
+        <li><b>SEO for local search</b> — “catering in Ipaja”, “cake delivery Lagos”, “African soup delivery Lagos”</li>
+        <li><b>WhatsApp link preview</b> — sharing the link shows a beautiful branded card</li>
+        <li><b>Fast &amp; lightweight</b> — loads on weak network</li>
+        <li><b>Free hosting ready</b> — Netlify/Vercel, or your own domain later</li>
+        <li><b>Easy edits</b> — all text in one simple file, plus a short guide for you</li>
+        <li><b>Gallery growth</b> — room to keep adding new cakes &amp; dishes</li>
+      </ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. ORDER FLOW -->
+<section>
+  <div class="wrap">
+    <div class="sec-num">05 — The Order Flow</div>
+    <h2 class="serif">From craving to <span class="gold">your WhatsApp</span> in under a minute.</h2>
+    <p class="lead" style="margin-bottom:34px;">This is exactly what you will receive in your chat:</p>
+    <div class="flow" style="margin-bottom:40px;">
+      <div class="step"><div class="sn">STEP 1</div><div class="st">Customer browses</div><div class="sd">Menu, gallery, packages</div></div>
+      <div class="arrow">→</div>
+      <div class="step"><div class="sn">STEP 2</div><div class="st">Adds items or fills booking form</div><div class="sd">Date, guests, area, notes</div></div>
+      <div class="arrow">→</div>
+      <div class="step"><div class="sn">STEP 3</div><div class="st">Taps “Send on WhatsApp”</div><div class="sd">Message writes itself</div></div>
+      <div class="arrow">→</div>
+      <div class="step"><div class="sn">STEP 4</div><div class="st">You confirm &amp; deliver</div><div class="sd">Chat, quote, cook, deliver</div></div>
+    </div>
+
+    <div class="wa-outer">
+      <div class="wa">
+        <div class="wa-top">
+          <div class="wa-av">SFM</div>
+          <div><div class="t">Sweet Flavour Magazzino</div><div class="s">+234 802 458 9080 · online</div></div>
+        </div>
+        <div class="wa-body">
+          <div class="bubble"><b>NEW ORDER — Sweet Flavour Magazzino</b>
+<b>Name:</b> Chioma A.
+<b>Service:</b> Celebration Cake
+<b>Details:</b> 2-tier buttercream, gold &amp; white, “Happy 40th”
+<b>Quantity:</b> 1
+<b>Date needed:</b> Sat, 22 Nov
+<b>Delivery area:</b> Ayobo
+<b>Budget:</b> ₦85,000
+<b>Note:</b> Please add fresh flowers on top.
+
+Also in basket: 100 samosa, 100 spring rolls, 5L egusi soup.</div>
+          <div class="wa-time">9:41 PM ✓✓</div>
+        </div>
+      </div>
+      <p style="text-align:center; font-size:12.5px; color:#8C8577; margin-top:16px;">Names, items and dates — all captured automatically. Nothing for the customer to retype.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 6. WHAT I NEED -->
+<section>
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <div class="sec-num">06 — What I Need From You</div>
+        <h2 class="serif">To build it right</h2>
+        <ul class="needs" style="margin-top:18px;">
+          <li><b>Price list</b> (or say “no prices — quote only”)</li>
+          <li><b>Photos</b> of your food &amp; cakes — or I generate premium images for now</li>
+          <li><b>Delivery areas &amp; fees</b> if you charge any</li>
+          <li><b>Opening hours</b> and how fast you normally respond</li>
+          <li><b>Instagram / Facebook / TikTok</b> handles (if any)</li>
+          <li><b>Logo</b> — or I design a simple SFM monogram</li>
+          <li><b>3–5 real customer reviews</b> if available</li>
+        </ul>
+      </div>
+      <div>
+        <div class="sec-num">07 — Build Plan</div>
+        <h2 class="serif">How we get there</h2>
+        <ul class="plan" style="margin-top:18px;">
+          <li><b>Step 1 —</b> You approve design direction + features (this page)</li>
+          <li><b>Step 2 —</b> I build the full homepage with real images &amp; working WhatsApp ordering</li>
+          <li><b>Step 3 —</b> You review on your phone, I adjust text, prices, photos</li>
+          <li><b>Step 4 —</b> Final polish, SEO tags, and handover (files + hosting guide + optional domain)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="closing">
+  <div class="monogram serif" style="width:64px;height:64px;font-size:20px;">SFM</div>
+  <h2 class="serif">Ready when you are.</h2>
+  <p>Reply with your choices — colour mood, whether to show prices, and photos or generated imagery — and I'll start building immediately.</p>
+  <div class="cta-row">
+    <span class="btn btn-gold">Approve &amp; Build</span>
+    <span class="btn btn-out">Request Changes</span>
+  </div>
+  <div class="contact">Ipaja · Ayobo · Lagos, Nigeria &nbsp;|&nbsp; WhatsApp <span>+234 802 458 9080</span> &nbsp;|&nbsp; Call <span>+234 803 576 7902</span></div>
+</div>
+
+</body>
+</html>
