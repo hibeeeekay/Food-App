@@ -81,3 +81,25 @@ python3 site/build.py
 
 **Sweet Flavour Magazzino** · Ipaja – Ayobo, Lagos, Nigeria
 WhatsApp **+234 802 458 9080** · Call **+234 803 576 7902**
+
+## How to push this website to GitHub
+
+### Option A: Easiest (no coding, GitHub website)
+1. Go to https://github.com and sign in (or create a free account).
+2. Click the **+** icon (top right) → **New repository**.
+3. Name it `sweet-flavour-magazzino`, keep it **Public**, click **Create repository**.
+4. On the next page choose **uploading an existing files** (or "uploading an existing file").
+5. Drag the project files from this folder into the page (at minimum: `index.html` and `README.md`).
+6. Click **Commit changes**. Done!
+
+### Option B: Command line (for developers)
+```bash
+git remote add origin https://github.com/YOUR-USERNAME/sweet-flavour-magazzino.git
+git branch -M main
+git push -u origin main
+```
+(You need a GitHub account and a Personal Access Token or SSH key for authentication.)
+
+### To make the site LIVE on the internet (free)
+After pushing: repository **Settings** → **Pages** → Source: **Deploy from a branch** → Branch: **main**, folder: **/ (root)** → **Save**.
+Your site will be at: `https://YOUR-USERNAME.github.io/sweet-flavour-magazzino/`
